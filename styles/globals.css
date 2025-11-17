@@ -1,0 +1,270 @@
+/* ====================================================
+   DragonsTrending — Coinsniper-inspired Neon Green Theme
+   Fully upgraded, responsive, with animations & polish
+   ==================================================== */
+
+/* --------------------------
+   CSS Variables / Theme
+   -------------------------- */
+:root{
+  --bg-dark: #0b0b0c;
+  --bg-elev: #0f1113;
+  --card: #0f1315;
+  --muted: #9aa3a6;
+  --text: #e6fff7;
+  --accent: #00ff88;
+  --accent-2: #00d977;
+  --accent-dim: rgba(0,255,136,0.18);
+  --neon-shadow: 0 0 18px rgba(0,255,136,0.28), 0 6px 30px rgba(0,0,0,0.6);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --glass: rgba(255,255,255,0.02);
+  --glass-2: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.04);
+  --max-width: 1200px;
+  --transition-fast: 180ms;
+  --transition: 260ms;
+}
+
+/* --------------------------
+   Base / Reset
+   -------------------------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#__next{height:100%}
+body{
+  background: linear-gradient(180deg,var(--bg-dark) 0%, #070708 100%);
+  color:var(--text);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --------------------------
+   Utilities
+   -------------------------- */
+.container{width:90%;max-width:var(--max-width);margin:0 auto}
+.flex{display:flex}
+.grid{display:grid}
+.center{display:flex;align-items:center;justify-content:center}
+.mt-2{margin-top:.5rem}
+.mb-2{margin-bottom:.5rem}
+.p-2{padding:.5rem}
+.rounded{border-radius:var(--radius-md)}
+.rounded-sm{border-radius:var(--radius-sm)}
+.shadow-neon{box-shadow:var(--neon-shadow)}
+
+/* --------------------------
+   Scrollbar
+   -------------------------- */
+*::-webkit-scrollbar{height:10px;width:10px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--accent) 0%, var(--accent-2) 100%);
+  border-radius:999px;
+  border:2px solid rgba(0,0,0,0.25);
+}
+*::-webkit-scrollbar-thumb:hover{filter:brightness(.95)}
+
+/* --------------------------
+   Header
+   -------------------------- */
+header{
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom:1px solid var(--glass-border);
+  padding:14px 0;
+  position:sticky;top:0;z-index:60;
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo{
+  width:48px;height:48px;border-radius:12px;overflow:hidden;
+  display:inline-block;border:2px solid rgba(255,255,255,0.04);
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  animation:logo-pulse 3.6s ease-in-out infinite;
+}
+.brand h1{font-size:18px;color:var(--accent);text-shadow:0 0 8px rgba(0,255,136,0.25);letter-spacing:0.6px}
+
+/* Logo pulse */
+@keyframes logo-pulse{
+  0%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(0,255,136,0))}
+  50%{transform:scale(1.03);filter:drop-shadow(0 0 10px rgba(0,255,136,0.22))}
+  100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(0,255,136,0))}
+}
+
+/* nav */
+nav a{color:var(--text);margin-left:18px;font-weight:600;opacity:.95;transition:all var(--transition)}
+nav a:hover{color:var(--accent);text-shadow:0 0 10px rgba(0,255,136,0.18)}
+
+/* --------------------------
+   Hero / Page title
+   -------------------------- */
+.page-hero{padding:28px 0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.page-hero h1{font-size:28px;color:var(--accent);text-shadow:0 6px 30px rgba(0,255,136,0.06);letter-spacing:0.2px}
+.page-hero p{color:var(--muted);font-size:14px}
+
+/* --------------------------
+   Cards / Project list (Coinsniper style)
+   -------------------------- */
+.list-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:18px}
+@media(min-width:640px){.list-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.list-grid{grid-template-columns:repeat(3,1fr)}}
+
+.card{
+  background:linear-gradient(180deg,var(--bg-elev), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border);
+  padding:14px;border-radius:12px;display:flex;gap:12px;align-items:center;
+  transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);
+}
+.card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 10px 40px rgba(0,0,0,0.6), 0 0 18px rgba(0,255,136,0.06)}
+.card .logo{width:64px;height:64px;border-radius:999px;border:2px solid rgba(255,255,255,0.04);overflow:hidden;flex:0 0 64px; box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+.card .meta{flex:1}
+.card h3{color:var(--accent);font-size:18px;margin-bottom:4px}
+.card p{color:var(--muted);font-size:13px;margin-bottom:6px}
+.card .right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.badge-premium{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#00120a;padding:6px 10px;border-radius:999px;font-weight:700;box-shadow:0 6px 20px rgba(0,255,136,0.06)}
+.votes{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--text)}
+
+/* Vote button */
+.btn-vote{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#00120a;border:none;padding:10px 12px;border-radius:9px;font-weight:800;
+  box-shadow:0 8px 30px rgba(0,255,136,0.08), inset 0 -2px 0 rgba(0,0,0,0.2);
+  cursor:pointer;transition:transform .16s ease,filter .16s;
+}
+.btn-vote:hover{transform:translateY(-2px);filter:brightness(1.02)}
+.btn-vote:active{transform:translateY(0)}
+
+/* --------------------------
+   Premium Slider (auto scroll marquee)
+   -------------------------- */
+.premium-slider-wrap{position:relative;margin:22px 0;padding:8px 0;overflow:hidden;border-radius:12px;border:1px solid var(--glass-border);background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+.premium-track{display:flex;gap:18px;align-items:center;padding:12px 18px;animation:marquee 28s linear infinite}
+.premium-item{min-width:260px;background:linear-gradient(180deg,var(--bg-elev), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);display:flex;gap:12px;align-items:center}
+.premium-item img{width:48px;height:48px;border-radius:999px;border:2px solid var(--accent);box-shadow:0 8px 24px rgba(0,255,136,0.06)}
+@keyframes marquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* make marquee continuous by duplicating track content on large screens */
+@media(max-width:640px){.premium-track{animation-duration:18s}}
+
+/* --------------------------
+   Leaderboard
+   -------------------------- */
+.leaderboard{
+  margin-top:18px;padding:14px;border-radius:12px;border:1px solid var(--glass-border);
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+}
+.leaderboard h2{color:var(--accent);margin-bottom:6px}
+.leaderboard .subtitle{color:var(--muted);font-size:13px;margin-bottom:12px}
+.leaderboard .row{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;background:linear-gradient(180deg,#0d0f10, #080909);margin-bottom:8px;border:1px solid rgba(255,255,255,0.02);transition:transform var(--transition)}
+.leaderboard .row:hover{transform:translateY(-4px);box-shadow:var(--neon-shadow)}
+.leader-left{display:flex;align-items:center;gap:12px}
+.leader-left img{width:44px;height:44px;border-radius:999px;border:2px solid rgba(255,255,255,0.03)}
+.leader-right{display:flex;align-items:center;gap:10px}
+
+/* Timer pill */
+.timer-pill{background:linear-gradient(90deg, rgba(0,255,136,0.08), rgba(0,217,119,0.04));padding:8px 12px;border-radius:999px;color:var(--accent);font-weight:700;border:1px solid rgba(0,255,136,0.06)}
+
+/* --------------------------
+   Forms
+   -------------------------- */
+.form{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:14px;border-radius:12px;border:1px solid var(--glass-border)}
+.form label{display:block;color:var(--muted);font-weight:600;margin-bottom:6px}
+.input, textarea, select{
+  width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:#0d0e0f;color:var(--text);outline:none;
+}
+.input:focus, textarea:focus {box-shadow:0 0 10px rgba(0,255,136,0.06);border-color:var(--accent);}
+
+/* --------------------------
+   Buttons & Interactions
+   -------------------------- */
+.btn{
+  display:inline-block;padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#00120a;font-weight:800;border:none;cursor:pointer;transition:all var(--transition);
+  box-shadow:0 12px 40px rgba(0,255,136,0.06), inset 0 -2px 0 rgba(0,0,0,0.25);
+}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--neon-shadow)}
+.btn.secondary{background:transparent;border:1px solid var(--glass-border);color:var(--muted);font-weight:700}
+.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.03);color:var(--muted)}
+
+/* shine effect (button) */
+.btn.shine{
+  position:relative;overflow:hidden;
+}
+.btn.shine::after{
+  content:"";position:absolute;left:-50%;top:0;width:50%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.22), rgba(255,255,255,0.06));opacity:0.6;transition:all 600ms;
+}
+.btn.shine:hover::after{left:120%;transition:all 600ms}
+
+/* --------------------------
+   Premium Badge / Crown
+   -------------------------- */
+.crown{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#00120a;font-weight:800;box-shadow:0 6px 22px rgba(0,255,136,0.06)
+}
+.crown .icon{font-size:16px}
+
+/* --------------------------
+   Footer
+   -------------------------- */
+footer{padding:28px 0;border-top:1px solid var(--glass-border);margin-top:36px}
+.footer-links a{color:var(--muted);margin-right:14px;transition:all var(--transition)}
+.footer-links a:hover{color:var(--accent);text-shadow:0 0 8px rgba(0,255,136,0.08)}
+
+/* --------------------------
+   Mobile adjustments
+   -------------------------- */
+@media (max-width:640px){
+  .header-inner{padding:0 12px}
+  .brand h1{font-size:16px}
+  .page-hero h1{font-size:20px}
+  .card{gap:10px;padding:12px}
+  .premium-item{min-width:200px}
+  .list-grid{grid-template-columns:repeat(1,1fr)}
+  .btn{padding:10px 12px;font-size:14px}
+}
+
+/* --------------------------
+   Tiny touches & helpers
+   -------------------------- */
+.kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.small{font-size:13px;color:var(--muted)}
+.centered{display:flex;align-items:center;justify-content:center}
+
+/* --------------------------
+   Accessibility focus
+   -------------------------- */
+:focus{outline:none;box-shadow:0 0 0 3px rgba(0,255,136,0.08)}
+
+/* --------------------------
+   Misc animations
+   -------------------------- */
+.fade-in{animation:fadeIn .6s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* --------------------------
+   Leaderboard highlight (top item)
+   -------------------------- */
+.leaderboard .top{
+  border:1px solid rgba(0,255,136,0.12);
+  background:linear-gradient(180deg, rgba(0,255,136,0.02), rgba(0,255,136,0.01));
+  box-shadow:0 12px 40px rgba(0,255,136,0.04);
+}
+
+/* --------------------------
+   Empty state
+   -------------------------- */
+.empty{
+  text-align:center;padding:30px;border-radius:12px;border:1px dashed rgba(255,255,255,0.03);color:var(--muted)
+}
+
+/* --------------------------
+   Debug helpers (remove in prod)
+   -------------------------- */
+/* .outline{outline:1px dashed rgba(255,255,255,0.04)} */
